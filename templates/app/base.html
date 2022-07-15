@@ -214,62 +214,62 @@
                     </li>
                 {% endif %}
                 </ul>
-            </li>
-            <li>
-                <a href="{% url 'kategory_show' %}">Kategorie</a>
-            </li>
+                </li>
+                <li>
+                    <a href="{% url 'kategory_show' %}">Kategorie</a>
+                </li>
 
-            <li>
+                <li>
 
-                <hr class="dropdown-divider">
-            </li>
-            <li>
-                <a href="#">O nas</a>
-            </li>
-            <li>
-                <a href="#">Kontakt</a>
-            </li>
-        </ul>
-
-        <ul class="list-unstyled components">
-            <li>
-                <a onclick="history.back()" class="button">Powrót</a>
-
-            </li>
-            <li class="active">
-                {% if user.is_authenticated %}
-                    <a href="#UserSubmenu" data-toggle="collapse" aria-expanded="false"
-                       class="dropdown-toggle">{{ user }}</a>
-                {% else %}
-                    <a href="#UserSubmenu" data-toggle="collapse" aria-expanded="false"
-                       class="dropdown-toggle">Gość</a>
-                {% endif %}
-                <ul class="collapse list-unstyled" id="UserSubmenu">
-                    {#                    <li>#}
-                    {#                        <a href="#">Profil</a>#}
-                    {#                    </li>#}
-                    <li>
-                        <a href="{%  url 'show_my_profile' %}">Profil</a>
-                    </li>
                     <hr class="dropdown-divider">
-                    {% if user.is_authenticated %}
-                        <li>
-                            <a href="{% url 'logout' %}">Wyloguj</a>
-                        </li>
-
-
-                    {% else %}
-                        <li>
-                            <a href="{% url 'login' %}">login</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'register' %}">register</a>
-                        </li>
-                    {% endif %}
-
+                </li>
+                <li>
+                    <a href="#">O nas</a>
+                </li>
+                <li>
+                    <a href="#">Kontakt</a>
+                </li>
                 </ul>
-            </li>
-        </ul>
+
+                <ul class="list-unstyled components">
+                    <li>
+                        <a onclick="history.back()" class="button">Powrót</a>
+
+                    </li>
+                    <li class="active">
+                        {% if user.is_authenticated %}
+                            <a href="#UserSubmenu" data-toggle="collapse" aria-expanded="false"
+                               class="dropdown-toggle">{{ user }}</a>
+                        {% else %}
+                            <a href="#UserSubmenu" data-toggle="collapse" aria-expanded="false"
+                               class="dropdown-toggle">Gość</a>
+                        {% endif %}
+                        <ul class="collapse list-unstyled" id="UserSubmenu">
+                            {#                    <li>#}
+                            {#                        <a href="#">Profil</a>#}
+                            {#                    </li>#}
+                            <li>
+                                <a href="{% url 'show_my_profile' %}">Profil</a>
+                            </li>
+                            <hr class="dropdown-divider">
+                            {% if user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'logout' %}">Wyloguj</a>
+                                </li>
+
+
+                            {% else %}
+                                <li>
+                                    <a href="{% url 'login' %}">login</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'register' %}">register</a>
+                                </li>
+                            {% endif %}
+
+                        </ul>
+                    </li>
+                </ul>
     </nav>
 
     <div id="content">
@@ -287,7 +287,11 @@
                         <span class="sr-only">Toggle Menu</span>
                     </button>
                 </button>
-
+                <div class="container justify-content-center">
+                <form action="{% url 'searching' %}" method="get">
+                    <input name="q" type="text" placeholder="Search...">
+                </form>
+                    </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item active">
@@ -300,8 +304,8 @@
             </div>
         </nav>
 
-{#        {% csrf_token %}#}
-{#        {% form.as_p %}#}
+        {#        {% csrf_token %}#}
+        {#        {% form.as_p %}#}
         {% block content %}
 
         {% endblock content %}

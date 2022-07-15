@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+  {% for item in object_list %}
+            {% if item.zdjecie %}
+               <a href="{% url 'moje_ogloszenia_show_detail' item.id %}"><img src="{{ item.zdjecie.url }} " alt="Brak foto." style="width: 150px; height: 150px;"/></a>
+            {% endif %}
+            <a href="{% url 'moje_ogloszenia_show_detail' item.id %}" class="button blue"><b>{{ item.nazwa_ogloszenia }}</b><br></a>
+            {{ item.krotki_opis_ogloszenia }} {{ item.cena }} {{ item.data_dodania }} {{ item.expiration_date }}
+
+            <hr class="divider">
+    {% endfor %}
+
+    <div class="pagination justify-content-center">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a class="btn btn-primary" href="?page=1">&laquo; first</a>
+            <a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current btn">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a class="btn btn-primary" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

@@ -2,6 +2,8 @@
 import datetime
 
 # Django
+
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -11,6 +13,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import BadHeaderError
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.forms import modelform_factory
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
@@ -22,6 +25,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_decode
 from django.utils.http import urlsafe_base64_encode
 # 3rd-party
+from django.views.generic import ListView
 from factory.compat import force_text
 # Local
 from .forms import CustomUserCreationForm
@@ -88,7 +92,7 @@ def create_ogloszenie(request):
 
             context['form'] = form
             context['Potwierdzenie'] = 'Ogloszenie zostało dodane'
-            return render(request, 'app/ogloszenie_create.html',  context )
+            return render(request, 'app/ogloszenie_create.html', context)
         else:
             context['Potwierdzenie'] = "Ogloszenie nie zostało dodane"
             context['form'] = form
@@ -199,6 +203,11 @@ def image2(request, id):
     return render(request, 'app/my_ogloszenia.html', context)
 
 
+def image3(request, id):
+    context = get_object_or_404(Ogloszenie, id=id)
+    return render(request, 'searching/search_results.html', context)
+
+
 def password_reset_request(request):
     if request.method == "POST":
         password_reset_form = PasswordResetForm(request.POST)
@@ -229,3 +238,18 @@ def password_reset_request(request):
     password_reset_form = PasswordResetForm()
     return render(request=request, template_name="password_reset/password_reset.html",
                   context={"password_reset_form": password_reset_form})
+
+
+class SearchResultsView(ListView):
+    model = Ogloszenie
+    template_name = "searching/search_results.html"
+
+    def get_queryset(self):  # new
+        query = self.request.GET.get("q")
+        object_list = Ogloszenie.objects.filter(
+            Q(nazwa_ogloszenia__icontains=query) | Q(tresc_ogloszenia__icontains=query)
+        )
+        # paginator = Paginator(object_list, 10)
+        # page_number = self.request.GET.get('page')
+        # page_obj = paginator.get_page(page_number)
+        return object_list
