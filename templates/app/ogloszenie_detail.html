@@ -1,0 +1,61 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+
+
+
+
+    <hr class="divider">
+    <body>
+    <table width="80%">
+    <tr class="center">
+        {% if ogloszenie.zdjecie %}
+
+            <img src="{{ ogloszenie.zdjecie.url }} " alt="#" style="width: 400px; height: 400px;"/>
+
+        {% endif %}
+    </tr>
+        <tr>
+            <th>Nazwa ogłoszenia:</th>
+            <td>{{ ogloszenie.nazwa_ogloszenia }}</td>
+        </tr>
+        <tr>
+            <th>Krótki opis ogłoszenia:</th>
+            <td>{{ ogloszenie.krotki_opis_ogloszenia }}</td>
+        </tr>
+        <tr>
+            <th>Treść ogłoszenia:</th>
+            <td>{{ ogloszenie.tresc_ogloszenia }}</td>
+        </tr>
+        <tr>
+            <th>Kategoria:</th>
+            <td>{{ ogloszenie.kategoria }}</td>
+        </tr>
+        <tr>
+            <th>Rok produkcji:</th>
+            <td>{{ ogloszenie.rok_produkcji }}</td>
+        </tr>
+        <tr>
+            <th>Miejscowość:</th>
+            <td>{{ ogloszenie.miejscowosc }}</td>
+        </tr>
+        <tr>
+            <th>Numer telefonu:</th>
+            <td>{{ ogloszenie.numer_telefonu }}</td>
+        </tr>
+        <tr>
+            <th>Cena:</th>
+            <td>{{ ogloszenie.cena }}</td>
+        </tr>
+        <tr>
+            <th>Data dodania:</th>
+            <td>{{ ogloszenie.data_dodania }}</td>
+        </tr>
+
+
+
+
+    </table>
+    </body>
+
+{% endblock %}

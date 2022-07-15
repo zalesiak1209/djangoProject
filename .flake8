@@ -4,7 +4,6 @@ exclude =   migrations,
             settings_local_pipelines.py,
             settings_ckeditor.py
             settings_getpaid.py
-            celery_local.py,
             settings_local.py
             manage.py
             docs/source/conf.py

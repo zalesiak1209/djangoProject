@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="btn btn-primary" type="submit" value="Edytuj">
+
+</form>
+{% if Potwierdzenie %}
+<p>{{ Potwierdzenie }}</p>
+{% endif %}
+
+{% endblock content %}

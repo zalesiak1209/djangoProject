@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+    <body>
+
+    <table width="60%">
+        <tr>
+            <td>
+            <td><a class="btn btn-primary align-right center" href="{% url 'edit_profil' %}">Edytuj profil</a></td>
+            </td>
+        </tr>
+        <tr>
+
+        </tr>
+        <tr>
+            <th>Nazwa użytkownika:</th>
+            <td>{{ profile.username }}</td>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td>{{ profile.email }}</td>
+        </tr>
+        <tr>
+            <th>Imię:</th>
+            <td>{{ profile.first_name }}</td>
+        </tr>
+        <tr>
+            <th>Nazwisko:</th>
+            <td>{{ profile.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Data dołączenia:</th>
+            <td>{{ profile.date_joined }}</td>
+        </tr>
+
+    </table>
+    </body>
+{% endblock %}

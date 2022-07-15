@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% block content %}
+    <form action="" class="form-horizontal form_middle" enctype='multipart/form-data' method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Dodaj">
+        <input class="btn btn-primary" type="reset" value="Wyczyść">
+    </form>
+    {% if Potwierdzenie %}
+        <p>{{ Potwierdzenie }}</p>
+    {% endif %}
+{% endblock %}
